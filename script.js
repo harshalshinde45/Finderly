@@ -1,3 +1,17 @@
+ const firebaseConfig = {
+    apiKey: "AIzaSyC60GkUlAk8RZwVbRs2V4cRWZjNTs6nRJ4",
+    authDomain: "finderly-b271d.firebaseapp.com",
+    databaseURL: "https://finderly-b271d-default-rtdb.firebaseio.com",
+    projectId: "finderly-b271d",
+    storageBucket: "finderly-b271d.firebasestorage.app",
+    messagingSenderId: "15659354387",
+    appId: "1:15659354387:web:08bec8f03ccccf56a1f2e6"
+  };
+  firebase.initalizeApp(firebaseConfig);
+  firebase.database().ref("items/").on("value", function(snapshot) {
+    console.log(snapshot.val());
+  });
+  
 // ===== In-Memory Storage =====
 let items = [];
 
