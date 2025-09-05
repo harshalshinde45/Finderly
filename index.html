@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finderly - Lost & Found</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Finderly</div>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('report-choice')">Report</a>
+      <a href="#" onclick="showPage('items')">Browse</a>
+    </nav>
+  </header>
+
+  <!-- Home (Hero + About) -->
+  <section id="home" class="active">
+    <div class="hero">
+      <h2>Welcome to Finderly</h2>
+      <p>Your campus Lost & Found made simple. Report lost or found items with ease.</p>
+      <a href="#" class="btn" onclick="showPage('report-choice')">Report Item</a>
+      <a href="#" class="btn" onclick="showPage('items')">Browse Items</a>
+    </div>
+
+    <!-- About now included on Home -->
+    <div class="about">
+      <h2>About Finderly</h2>
+      <p>Finderly is your simple lost and found solution. Report lost belongings, 
+         help others by reporting found items, and reconnect with your essentials.</p>
+    </div>
+  </section>
+
+  <!-- Report Choice -->
+  <section id="report-choice">
+    <div class="container">
+      <h1>Report an Item</h1>
+      <p style="text-align:center;margin-bottom:15px">Choose what you want to report:</p>
+      <button onclick="showPage('report-lost')">Report Lost Item</button>
+      <button onclick="showPage('report-found')">Report Found Item</button>
+    </div>
+  </section>
+
+  <!-- Report Lost -->
+  <section id="report-lost">
+    <div class="container">
+      <h1>Report Lost Item</h1>
+      <form id="lostForm">
+        <label>Item Name:</label>
+        <input type="text" required />
+        <label>Description:</label>
+        <textarea required></textarea>
+        <label>Date Lost:</label>
+        <input type="date" required />
+        <label>Location:</label>
+        <input type="text" required />
+        <label>Your Contact:</label>
+        <input type="text" required />
+        <button type="submit">Submit Lost Item</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Report Found -->
+  <section id="report-found">
+    <div class="container">
+      <h1>Report Found Item</h1>
+      <form id="foundForm">
+        <label>Item Name:</label>
+        <input type="text" required />
+        <label>Description:</label>
+        <textarea required></textarea>
+        <label>Date Found:</label>
+        <input type="date" required />
+        <label>Location:</label>
+        <input type="text" required />
+        <label>Your Contact:</label>
+        <input type="text" required />
+        <button type="submit">Submit Found Item</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Browse Items -->
+  <section id="items">
+    <div class="search-filter">
+      <input type="text" id="searchInput" placeholder="Search items..." onkeyup="filterItems()" />
+      <select id="statusFilter" onchange="filterItems()">
+        <option value="">All</option>
+        <option value="lost">Lost</option>
+        <option value="found">Found</option>
+      </select>
+    </div>
+    <div class="items-container" id="itemsContainer"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Finderly. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
