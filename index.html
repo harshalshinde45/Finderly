@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finderly - Lost & Found Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="logo">Finderly</div>
+    <nav>
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('report')">Report</a>
+      <a href="#" onclick="showPage('items')">Browse</a>
+      <a href="#about-section">About</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== Main Content Wrapper ===== -->
+  <main>
+    <!-- ===== Home Section (Hero + About) ===== -->
+   <!-- ===== Home Section (Hero + About) ===== -->
+<section id="home" class="active">
+  <div class="hero">
+    <!-- Hero Image -->
+    <div class="hero-image">
+      <img src="https://i.pinimg.com/1200x/9f/74/df/9f74df08d6b47f40452a79305f85e0ac.jpg" alt="Lost and Found" />
+    </div>
+
+    <!-- Hero Content BELOW image -->
+    <div class="hero-content">
+      <h1>Lost something? Found something?</h1>
+      <p>Finderly helps you reconnect lost items with their owners.</p>
+      <a href="#" class="btn" onclick="showPage('report')">Report Item</a>
+      <a href="#" class="btn outline" onclick="showPage('items')">View Items</a>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div id="about-section" class="about-box">
+    <h2>About Finderly</h2>
+    <p>
+      Finderly is a community-driven lost and found platform designed to help
+      people easily report and find items. Whether you’ve lost your essentials
+      or found something valuable, Finderly bridges the gap between the owner
+      and the finder with a simple, modern interface.
+    </p>
+  </div>
+</section>
+
+
+    <!-- ===== Report Lost/Found ===== -->
+    <section id="report">
+      <div class="form-container">
+        <h2>Report Lost or Found Item</h2>
+        <form id="reportForm">
+          <label>Item Name</label>
+          <input type="text" required />
+          
+          <label>Description</label>
+          <textarea required></textarea>
+          
+          <label>Location</label>
+          <input type="text" required />
+          
+          <label>Status</label>
+          <select required>
+            <option value="lost">Lost</option>
+            <option value="found">Found</option>
+          </select>
+          
+          <label>Upload Image</label>
+          <input type="file" accept="image/*" />
+          
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== Browse Items ===== -->
+    <section id="items">
+      <div class="search-filter">
+        <input type="text" id="searchInput" placeholder="Search items..." onkeyup="filterItems()" />
+        <select id="statusFilter" onchange="filterItems()">
+          <option value="">All</option>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+      </div>
+      <div class="items-container" id="itemsContainer"></div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section id="contact">
+      <div class="form-container">
+        <h2>Contact Us</h2>
+        <form>
+          <label>Your Name</label>
+          <input type="text" required />
+          
+          <label>Your Email</label>
+          <input type="email" required />
+          
+          <label>Message</label>
+          <textarea required></textarea>
+          
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>&copy; 2025 Finderly. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

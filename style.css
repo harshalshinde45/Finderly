@@ -1,0 +1,142 @@
+/* ===== Reset & Base ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html, body{
+  height:100%;
+  scroll-behavior: smooth; /* smooth scroll for About link */
+}
+body{
+  font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+  display:flex;flex-direction:column;min-height:100vh;
+  background:#fafafa;color:#333
+}
+main{flex:1}
+section{display:none;padding:40px 20px}
+section.active{display:block}
+
+/* ===== Header ===== */
+header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:15px 30px;background:#1e2a38;color:#fff;
+  position:sticky;top:0;z-index:1000
+}
+header .logo{font-size:26px;font-weight:bold}
+header nav{display:flex;gap:20px}
+header nav a{
+  color:#fff;text-decoration:none;font-weight:600;
+  transition:.2s
+}
+header nav a:hover{color:#00cc88}
+
+/* ===== Hero ===== */
+.hero{
+  text-align:center;padding:60px 20px;background:#f5f7fa;
+}
+.hero h1{font-size:34px;margin-bottom:12px;color:#222}
+.hero p{font-size:16px;margin-bottom:20px;color:#555}
+.btn{
+  display:inline-block;padding:10px 22px;margin:5px;
+  border-radius:6px;font-weight:600;font-size:14px;
+  background:#00cc88;color:#fff;text-decoration:none;
+  transition:.2s
+}
+.btn:hover{background:#009966}
+.btn.outline{background:transparent;color:#00cc88;border:2px solid #00cc88}
+.btn.outline:hover{background:#00cc88;color:#fff}
+
+/* ===== About Box (inside Home) ===== */
+.about-box{
+  max-width:800px;margin:40px auto 0; /* spacing below hero */
+  padding:30px;background:#fff;
+  border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.1);
+  text-align:center
+}
+.about-box h2{font-size:24px;margin-bottom:12px;color:#222}
+.about-box p{color:#555;font-size:15px;line-height:1.6}
+
+/* ===== Form Container ===== */
+.form-container{
+  max-width:600px;margin:30px auto;padding:25px;
+  background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08)
+}
+h2{text-align:center;color:#222;margin-bottom:15px;font-size:22px}
+label{display:block;margin-top:10px;font-weight:600;font-size:14px}
+input,textarea,select{
+  width:100%;padding:10px;margin-top:5px;
+  border:1px solid #ccc;border-radius:6px;font-size:14px
+}
+textarea{resize:none;height:100px}
+button{
+  margin-top:15px;width:100%;padding:12px;border:none;border-radius:6px;
+  background:#00cc88;color:#fff;font-weight:bold;cursor:pointer;transition:.2s
+}
+button:hover{background:#009966}
+
+/* ===== Items Grid ===== */
+.items-container{
+  max-width:1000px;margin:30px auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;padding:0 15px
+}
+.item-card{
+  background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.1);
+  padding:15px;text-align:center
+}
+.item-card img{
+  width:100%;max-width:160px;height:130px;object-fit:cover;
+  border-radius:8px;margin-bottom:10px
+}
+.item-card h3{margin:8px 0;font-size:18px}
+.item-card p{font-size:14px;color:#555}
+
+/* ===== Status Badge ===== */
+.status{
+  display:inline-block;padding:5px 12px;border-radius:20px;
+  font-size:12px;font-weight:bold
+}
+.lost{background:#ff4d4d;color:#fff}
+.found{background:#00cc66;color:#fff}
+
+/* ===== Search & Filter ===== */
+.search-filter{
+  max-width:900px;margin:20px auto;padding:12px;
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+  background:#fff;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,.08)
+}
+.search-filter input,.search-filter select{
+  flex:1;min-width:180px;padding:10px;border:1px solid #ccc;border-radius:6px
+}
+
+/* ===== Footer ===== */
+footer{
+  background:#1e2a38;color:#fff;text-align:center;
+  padding:15px;font-size:13px;margin-top:auto
+}/* Hero Wrapper */
+.hero {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+/* Hero Image */
+.hero-image img {
+  max-width: 70%;   /* smaller image */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px; /* optional rounded corners */
+}
+
+/* Hero Content */
+.hero-content {
+  margin-top: 20px;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  color: #555;
+  margin-bottom: 20px;
+}
