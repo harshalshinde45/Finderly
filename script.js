@@ -18,30 +18,32 @@ function renderItems(list = items) {
     return;
   }
 
-  list.forEach(item => {
+  list.forEach((item) => {
     const card = document.createElement("div");
     card.className = "item-card";
     card.innerHTML = `
-      ${item.image ? `<img src="${item.image}" alt="Item Image">` : ""}
+      ${item.images?.length ? `<img src="${item.images[0]}" alt="Item Image">` : ""}
       <h3>${item.name}</h3>
       <p>${item.desc}</p>
       <p><b>Location:</b> ${item.location}</p>
       <span class="status ${item.status}">${item.status.toUpperCase()}</span>
     `;
+    card.addEventListener("click", () => openItemDetail(item));
     container.appendChild(card);
   });
 }
 
 // ===== Add New Item =====
 function addItem(form) {
+  const files = form.querySelector("input[type=file]").files;
+  const imageUrls = [...files].map(file => URL.createObjectURL(file));
+
   const data = {
     name: form.querySelector("input[type=text]").value,
     desc: form.querySelector("textarea").value,
     location: form.querySelectorAll("input[type=text]")[1].value,
     status: form.querySelector("select").value,
-    image: form.querySelector("input[type=file]").files[0]
-      ? URL.createObjectURL(form.querySelector("input[type=file]").files[0])
-      : null
+    images: imageUrls
   };
 
   items.unshift(data);
@@ -71,4 +73,83 @@ function filterItems() {
   });
 
   renderItems(filtered);
+}
+
+// ===== Modal Functions =====
+function openItemDetail(item) {
+  document.getElementById("modalMainImage").src = item.images?.[0] || "";
+  document.getElementById("modalName").innerText = item.name;
+  document.getElementById("modalDesc").innerText = item.desc;
+  document.getElementById("modalLocation").innerText = item.location;
+  document.getElementById("modalStatus").innerText = item.status.toUpperCase();
+
+  const extraContainer = document.getElementById("modalExtraImages");
+  extraContainer.innerHTML = "";
+  if (item.images && item.images.length > 1) {
+    item.images.slice(1).forEach(img => {
+      const thumb = document.createElement("img");
+      thumb.src = img;
+      thumb.addEventListener("click", () => {
+        document.getElementById("modalMainImage").src = img;
+      });
+      extraContainer.appendChild(thumb);
+    });
+  }
+
+  document.getElementById("itemModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("itemModal").style.display = "none";
+}
+
+window.addEventListener("click", e => {
+  const modal = document.getElementById("itemModal");
+  if (e.target === modal) closeModal();
+});
+function findMatchingItems(newItem) {
+  const matches = [];
+
+  const newWords = newItem.desc.toLowerCase().split(/\W+/);
+
+  items.forEach(existing => {
+    if (existing === newItem) return; // skip self
+
+    const existingWords = existing.desc.toLowerCase().split(/\W+/);
+    const commonWords = newWords.filter(word => existingWords.includes(word));
+
+    const similarity = (commonWords.length / newWords.length) * 100;
+
+    if (similarity >= 40) { // 40% similarity threshold
+      matches.push({ item: existing, score: similarity });
+    }
+  });
+
+  return matches.sort((a, b) => b.score - a.score);
+}
+function addItem(form) {
+  const files = form.querySelector("input[type=file]").files;
+  const imageUrls = [...files].map(file => URL.createObjectURL(file));
+
+  const data = {
+    name: form.querySelector("input[type=text]").value,
+    desc: form.querySelector("textarea").value,
+    location: form.querySelectorAll("input[type=text]")[1].value,
+    status: form.querySelector("select").value,
+    images: imageUrls
+  };
+
+  items.unshift(data);
+
+  // 🔍 Match descriptions in background
+  const matches = findMatchingItems(data);
+  if (matches.length > 0) {
+    alert(`We found ${matches.length} similar item(s) already reported!\n` +
+      matches.map(m => `• ${m.item.name} (${m.item.status}) – ${m.score.toFixed(1)}% match`).join("\n")
+    );
+  }
+
+  renderItems();
+  form.reset();
+  showPage("items");
 }
